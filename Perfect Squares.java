@@ -17,7 +17,12 @@ public class Solution {
         }
         
         Queue<Integer> nodes = new LinkedList<Integer>(); 
+        Set<Integer> voidDup = new HashSet<Integer>(); //用一个set来去重，因为比如说4（4= 2+2），如果之后再出现（4= 1+1+1+1)，
+        //就不用加到Queue, 避免memory exceed 
+        
+        
         nodes.offer(0); //initial node 
+
         int minstep = 0;  //initial level 
         while (nodes.size() > 0){
             minstep ++;  
@@ -29,7 +34,10 @@ public class Solution {
                     if(solution == n){
                         return minstep;
                     }
+                    if (!voidDup.contains(solution)){ //用set 比直接在Q里找东西和用hashmap快
                     nodes.offer(solution); //at the new node(of next level to Q )
+                    voidDup.add(solution); 
+                    } 
   
                 }
             }
