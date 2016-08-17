@@ -10,8 +10,8 @@ public class Solution {
         int minDepth = 0;
         while(nodes.size() != 0){
             minDepth++; 
-            int levelSize = 0;
-            for(int i = 0; i< levelSize; i ++){  // 超时
+            int levelSize = nodes.size();
+            for(int i = 0; i< levelSize; i ++){  
                 TreeNode cur = nodes.poll();
                 if(cur.left== null && cur.right == null){
                     return minDepth;
@@ -32,7 +32,7 @@ public class Solution {
   }
 }
 
----------------未超时，避免使用了for loop， 用一个变量 lastNum来代表当层节点数，curNum来计算下一层节点数
+--------------避免使用了for loop， 用一个变量 lastNum来代表当层节点数，curNum来计算下一层节点数
 
 /**
  * Definition for a binary tree node.
